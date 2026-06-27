@@ -27,6 +27,9 @@
   @keyframes muku-rise{from{transform:translateY(16px);}to{transform:translateY(0);}}
   @keyframes muku-fade{from{transform:translateY(8px);}to{transform:translateY(0);}}
   image-slot{display:block;}
+  .gal-2x2{position:relative;grid-column:span 2;grid-row:span 2;}
+  .gal-1x1{position:relative;grid-column:span 1;grid-row:span 1;}
+  .gal-2x1{position:relative;grid-column:span 2;grid-row:span 1;}
 </style>
 </helmet>
 <div style="font-family:'Shippori Mincho',serif;color:#2c2a24;background:#faf6ec;overflow-x:hidden;">
@@ -176,7 +179,7 @@
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;">
         <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
-          <div style="position:relative;{{ g.span }}">
+          <div class="{{ g.cls }}">
             <image-slot id="{{ g.id }}" style="width:100%;height:100%;display:block;" shape="rounded" radius="3" placeholder="{{ g.ph }}"></image-slot>
             <span style="position:absolute;left:14px;bottom:12px;font-size:12px;letter-spacing:0.16em;color:#044a74;background:rgba(250,246,236,0.9);padding:4px 10px;border-radius:2px;pointer-events:none;">{{ g.label }}</span>
           </div>
@@ -285,12 +288,12 @@ class Component extends DCLogic {
       { id: 'menu-4', tag: '和', name: '枝豆と新生姜の白和え', reading: 'えだまめ と しんしょうが の しらあえ', desc: '採れたての枝豆に、新生姜の香りをそっと忍ばせて。' },
     ];
     const gallery = [
-      { id: 'gal-1', label: '季節の一皿', ph: '料理写真', span: 'grid-column:span 2;grid-row:span 2;' },
-      { id: 'gal-2', label: '土鍋ごはん', ph: '料理写真', span: 'grid-column:span 1;grid-row:span 1;' },
-      { id: 'gal-3', label: '旬の野菜', ph: '食材写真', span: 'grid-column:span 1;grid-row:span 1;' },
-      { id: 'gal-4', label: '神田の朝', ph: '街の写真', span: 'grid-column:span 1;grid-row:span 1;' },
-      { id: 'gal-5', label: 'カウンター', ph: '店内写真', span: 'grid-column:span 1;grid-row:span 1;' },
-      { id: 'gal-6', label: '店構え', ph: '外観写真', span: 'grid-column:span 2;grid-row:span 1;' },
+      { id: 'gal-1', label: '季節の一皿', ph: '料理写真', cls: 'gal-2x2' },
+      { id: 'gal-2', label: '土鍋ごはん', ph: '料理写真', cls: 'gal-1x1' },
+      { id: 'gal-3', label: '旬の野菜', ph: '食材写真', cls: 'gal-1x1' },
+      { id: 'gal-4', label: '神田の朝', ph: '街の写真', cls: 'gal-1x1' },
+      { id: 'gal-5', label: 'カウンター', ph: '店内写真', cls: 'gal-1x1' },
+      { id: 'gal-6', label: '店構え', ph: '外観写真', cls: 'gal-2x1' },
     ];
     return {
       showReadings, showDates, seasons, current, menu, gallery,
