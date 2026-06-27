@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#044a74">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#044a74"></rect>
+    <text x="600" y="350" font-size="120" font-weight="700" text-anchor="middle" fill="#faf6ec" font-family="serif">無垢食堂</text>
+    <text x="600" y="420" font-size="32" text-anchor="middle" fill="#bdd3e1" font-family="sans-serif" letter-spacing="4">KANDA</text>
+  </svg>
+</template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&amp;family=Zen+Kaku+Gothic+New:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<script src="./assets/image-slot.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:#faf6ec;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  ::selection{background:#044a74;color:#faf6ec;}
+  @keyframes muku-rise{from{transform:translateY(16px);}to{transform:translateY(0);}}
+  @keyframes muku-fade{from{transform:translateY(8px);}to{transform:translateY(0);}}
+  image-slot{display:block;}
+</style>
+</helmet>
+<div style="font-family:'Shippori Mincho',serif;color:#2c2a24;background:#faf6ec;overflow-x:hidden;">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 34px;background:rgba(250,246,236,0.82);backdrop-filter:blur(10px);border-bottom:1px solid rgba(4,74,116,0.12);">
+    <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
+      
+      <span style="font-size: 16px; letter-spacing: 0.28em; color: #044a74; font-weight: 600; padding-left: 6px; white-space: nowrap">神田無垢食堂</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:30px;">
+      <a href="#concept" style="font-size:13px;letter-spacing:0.14em;color:#044a74;text-decoration:none;">コンセプト</a>
+      <a href="#sekki" style="font-size:13px;letter-spacing:0.14em;color:#044a74;text-decoration:none;">二十四節気</a>
+      <a href="#menu" style="font-size:13px;letter-spacing:0.14em;color:#044a74;text-decoration:none;">献立</a>
+      <a href="#gallery" style="font-size:13px;letter-spacing:0.14em;color:#044a74;text-decoration:none;">ギャラリー</a>
+      <a href="#info" style="font-size:13px;letter-spacing:0.14em;color:#044a74;text-decoration:none;">店舗情報</a>
+      <a href="#info" style="font-size:13px;letter-spacing:0.18em;color:#faf6ec;background:#044a74;text-decoration:none;padding:9px 20px;border-radius:2px;">ご予約</a>
+    </div>
+  </nav>
+
+  <div id="top"></div>
+
+  <!-- HERO : 型染め全景 -->
+  <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:130px 24px 0;text-align:center;position:relative;">
+    <div style="animation:muku-fade 1.2s ease both;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.42em;color:#044a74;opacity:0.65;margin-bottom:30px;white-space:nowrap;">MUKU&nbsp;SHOKUDO&nbsp;—&nbsp;KANDA,&nbsp;TOKYO</div>
+    <img src="assets/logo.svg" alt="神田無垢食堂" style="width: 360px; height: auto; margin-bottom: 36px; animation: muku-rise 1s ease both">
+    <h1 style="font-size:64px;font-weight:700;line-height:1.5;color:#044a74;letter-spacing:0.08em;margin-bottom:26px;animation:muku-rise 1s ease 0.1s both;">東京のまんなかで、<br>季節をいただく。</h1>
+    <p style="font-size: 16px; line-height: 2.2; color: #4a4740; letter-spacing: 0.06em; animation: muku-rise 1s ease 0.2s both">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
+    <img src="assets/keyvisual_trans.svg" alt="" style="width:min(1180px,96%);height:auto;margin-top:6px;animation:muku-fade 1.6s ease 0.3s both;">
+  </section>
+
+  <!-- CONCEPT -->
+  <section id="concept" style="padding:130px 32px 120px;max-width:1080px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:46px;">
+      <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.4em;color:#044a74;">CONCEPT</span>
+      <span style="height:1px;width:54px;background:rgba(4,74,116,0.4);"></span>
+      <span style="font-size:13px;letter-spacing:0.3em;color:#044a74;">神田の物語</span>
+    </div>
+    <h2 style="font-size:46px;font-weight:700;line-height:1.6;color:#044a74;letter-spacing:0.06em;margin-bottom:54px;">季節を、ちゃんと食べる。<br>大都会のど真ん中で。</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px 64px;">
+      <p style="font-size:15.5px;line-height:2.4;color:#46433c;letter-spacing:0.04em;">神田は「神の田」ともいわれ、江戸総鎮守・神田明神を中心に、人々の暮らしを支えてきた町です。かつて神田青果市場が置かれたこの地は、江戸、そして東京の食を支える台所でもありました。</p>
+      <p style="font-size:15.5px;line-height:2.4;color:#46433c;letter-spacing:0.04em;">神田無垢食堂は、この町に受け継がれてきた食の文化を未来へつなぎ、食を通して、人と人、自然と暮らし、そして季節を結ぶ場所でありたい。オフィス街なのに、実は下町。そんな神田の豊かさを、一皿の中で。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;margin-top:72px;padding:44px 48px;background:#f1e8d6;border-radius:3px;">
+      <img src="assets/logo.svg" alt="神田無垢食堂 ロゴ" style="width: 400px; height: 220px">
+      <div>
+        <p style="font-size:15px;line-height:2.3;color:#46433c;letter-spacing:0.04em;">円環する十二の結び目は、一年を巡る十二か月であり、暮らしの時を刻む時報でもあります。その結びが織りなす二十四のリズムに、日本人が古くから季節の拠りどころとしてきた<strong style="color:#044a74;font-weight:700;">二十四節気</strong>の感性を重ねました。</p>
+        <p style="font-size:13px;line-height:2;color:#6c685f;letter-spacing:0.04em;margin-top:16px;">ブランドカラーは、神田祭で受け継がれてきた法被の色。誠実さ、粋、人と人とのつながりへの敬意を込めています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二十四節気 -->
+  <section id="sekki" style="background:#044a74;padding:120px 32px;">
+    <div style="max-width:1080px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:46px;">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.4em;color:#bdd3e1;">24 SEKKI</span>
+        <span style="height:1px;width:54px;background:rgba(255,255,255,0.4);"></span>
+        <span style="font-size:13px;letter-spacing:0.3em;color:#e9f0f5;">二十四節気とともに</span>
+      </div>
+
+      <!-- 今の節気 -->
+      <div style="display:grid;grid-template-columns:1fr;gap:0;background:#faf6ec;border-radius:4px;overflow:hidden;margin-bottom:64px;">
+        <div style="padding:54px 56px;">
+          <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.34em;color:#9a8f73;margin-bottom:22px;">節気をえらぶ ・ {{ current.no }}節気</div>
+          <div style="display:flex;align-items:baseline;gap:22px;margin-bottom:8px;">
+            <span style="font-size:80px;font-weight:800;line-height:1;color:#044a74;letter-spacing:0.04em;">{{ current.jp }}</span>
+            <span style="font-size:18px;color:#6c685f;letter-spacing:0.1em;">{{ current.readingLatin }}</span>
+          </div>
+          <sc-if value="{{ showDates }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size: 14px; color: #9a8f73; letter-spacing: 0.12em; margin-bottom: 26px; margin-top: 26px">{{ current.range }}</div>
+          </sc-if>
+          <p style="font-size: 15px; line-height: 2.3; color: #46433c; letter-spacing: 0.04em">{{ current.body }}</p>
+        </div>
+      </div>
+
+      <!-- 24節気グリッド -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.18);border-radius:3px;overflow:hidden;">
+        <sc-for list="{{ seasons }}" as="s" hint-placeholder-count="4">
+          <div style="background:#044a74;padding:26px 22px;">
+            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.22);">
+              <span style="font-size:24px;font-weight:700;color:#faf6ec;">{{ s.name }}</span>
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:10px;letter-spacing:0.26em;color:#9fbace;">{{ s.latin }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:3px;">
+              <sc-for list="{{ s.terms }}" as="t" hint-placeholder-count="6">
+                <sc-if value="{{ t.current }}" hint-placeholder-val="{{ false }}">
+                  <div onClick="{{ t.onSelect }}" style="display:flex;align-items:baseline;justify-content:space-between;background:#faf6ec;border-radius:2px;padding:9px 12px;cursor:pointer;">
+                    <span style="font-size:16px;font-weight:700;color:#044a74;letter-spacing:0.08em;">{{ t.jp }}</span>
+                    <span style="font-size:9px;letter-spacing:0.2em;color:#c08a2e;font-family:'Zen Kaku Gothic New',sans-serif;">選択中</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ t.notCurrent }}" hint-placeholder-val="{{ true }}">
+                  <div onClick="{{ t.onSelect }}" style="display:flex;align-items:baseline;justify-content:space-between;padding:9px 12px;cursor:pointer;border-radius:2px;" style-hover="background:rgba(255,255,255,0.1);">
+                    <span style="font-size:16px;color:#e3ecf2;letter-spacing:0.08em;">{{ t.jp }}</span>
+                    <sc-if value="{{ showReadings }}" hint-placeholder-val="{{ true }}">
+                      <span style="font-size:10px;color:#7d9cb2;letter-spacing:0.1em;">{{ t.reading }}</span>
+                    </sc-if>
+                  </div>
+                </sc-if>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 献立 -->
+  <section id="menu" style="padding:120px 32px;max-width:1080px;margin:0 auto;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:52px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.4em;color:#044a74;">MENU</span>
+          <span style="height:1px;width:54px;background:rgba(4,74,116,0.4);"></span>
+          <span style="font-size:13px;letter-spacing:0.3em;color:#044a74;">本日・季節の献立</span>
+        </div>
+        <h2 style="font-size:40px;font-weight:700;line-height:1.5;color:#044a74;letter-spacing:0.06em;">小暑の、おしながき</h2>
+      </div>
+      <p style="font-size:13px;line-height:2;color:#6c685f;letter-spacing:0.04em;max-width:300px;">献立は二十四節気の移ろいとともに変わります。掲載は一例です。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px 44px;">
+      <sc-for list="{{ menu }}" as="m" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;">
+          <image-slot id="{{ m.id }}" style="width:100%;height:248px;display:block;" shape="rounded" radius="3" placeholder="料理写真をドロップ"></image-slot>
+          <div style="display:flex;align-items:baseline;gap:14px;margin-top:22px;">
+            <span style="flex:none;width:34px;height:34px;border-radius:50%;background:#044a74;color:#faf6ec;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;">{{ m.tag }}</span>
+            <div>
+              <h3 style="font-size:21px;font-weight:700;color:#044a74;letter-spacing:0.06em;line-height:1.4;">{{ m.name }}</h3>
+              <sc-if value="{{ showReadings }}" hint-placeholder-val="{{ true }}">
+                <div style="font-size:11px;letter-spacing:0.22em;color:#9a8f73;margin-top:5px;">{{ m.reading }}</div>
+              </sc-if>
+            </div>
+          </div>
+          <p style="font-size:14px;line-height:2.1;color:#56524a;letter-spacing:0.04em;margin-top:14px;">{{ m.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ギャラリー -->
+  <section id="gallery" style="background:#f1e8d6;padding:120px 32px;">
+    <div style="max-width:1080px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:46px;">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.4em;color:#044a74;">GALLERY</span>
+        <span style="height:1px;width:54px;background:rgba(4,74,116,0.4);"></span>
+        <span style="font-size:13px;letter-spacing:0.3em;color:#044a74;">神田無垢食堂のある風景</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
+          <div style="position:relative;{{ g.span }}">
+            <image-slot id="{{ g.id }}" style="width:100%;height:100%;display:block;" shape="rounded" radius="3" placeholder="{{ g.ph }}"></image-slot>
+            <span style="position:absolute;left:14px;bottom:12px;font-size:12px;letter-spacing:0.16em;color:#044a74;background:rgba(250,246,236,0.9);padding:4px 10px;border-radius:2px;pointer-events:none;">{{ g.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 店舗情報 -->
+  <section id="info" style="background:#044a74;padding:120px 32px;">
+    <div style="max-width:1080px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:46px;">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.4em;color:#bdd3e1;">INFORMATION</span>
+        <span style="height:1px;width:54px;background:rgba(255,255,255,0.4);"></span>
+        <span style="font-size:13px;letter-spacing:0.3em;color:#e9f0f5;">店舗情報・アクセス</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+        <div>
+          <h2 style="font-size:34px;font-weight:700;color:#faf6ec;letter-spacing:0.1em;margin-bottom:36px;">神田無垢食堂</h2>
+          <dl style="display:grid;grid-template-columns:96px 1fr;gap:0;color:#e3ecf2;">
+            <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">住所</dt>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">〒101-0054<br>東京都神田錦町3-21<br>ちよだプラットフォームスクウェア1F</dd>
+            <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">営業時間</dt>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);"><span style="display:block;margin-bottom:10px;">ランチ 11:30 – 14:30</span><span style="display:block;margin-bottom:8px;">ディナー 17:00 – 22:00</span><span style="display:block;font-size:13px;color:#9fbace;margin-top:10px;">※ディナーは予約のみ受付</span></dd>
+            <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">定休日</dt>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">土曜・日曜・祝日</dd>
+            <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">席数</dt>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">カウンター 8席・テーブル 16席</dd>
+            <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);border-bottom:1px solid rgba(255,255,255,0.18);">アクセス</dt>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);border-bottom:1px solid rgba(255,255,255,0.18);">東京メトロ丸ノ内線「淡路町」駅 徒歩3分<br>東京メトロ丸ノ内線・東西線「大手町」駅 徒歩5分<br>都営地下鉄三田線「大手町」駅 徒歩5分</dd>
+          </dl>
+          <div style="display:flex;gap:14px;margin-top:34px;">
+            <a href="tel:0352598051" style="font-size:14px;letter-spacing:0.14em;color:#044a74;background:#faf6ec;text-decoration:none;padding:13px 30px;border-radius:2px;">電話でご予約 03-5259-8051</a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <iframe src="https://www.google.com/maps?q=%E3%81%A1%E3%82%88%E3%81%A0%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%82%B9%E3%82%AF%E3%82%A6%E3%82%A7%E3%82%A2&amp;z=16&amp;output=embed" width="100%" height="340" style="border:none;border-radius:3px;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <img src="assets/keyvisual_cream.svg" alt="" style="width: 540px; opacity: 0.5">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#03395b;padding:70px 32px 56px;text-align:center;">
+    <img src="assets/logo_white.svg" alt="神田無垢食堂" style="width: 360px; height: auto; margin-bottom: 24px">
+    <p style="font-size:13px;line-height:2;letter-spacing:0.18em;color:#bdd3e1;margin-bottom:30px;">東京（江戸）の時報となる食堂。<br>食を通して季節を味わい、人と人とが結ばれる場所へ。</p>
+    <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.3em;color:#6f93ab;">© KANDA MUKU SHOKUDO &nbsp;/&nbsp; KANDA, TOKYO</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showReadings&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showSekkiDates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;}}">
+class Component extends DCLogic {
+  state = { selected: '小暑' };
+  renderVals() {
+    const showReadings = this.props.showReadings ?? true;
+    const showDates = this.props.showSekkiDates ?? true;
+    const selected = this.state.selected;
+    const ord = ['第一','第二','第三','第四','第五','第六','第七','第八','第九','第十','第十一','第十二','第十三','第十四','第十五','第十六','第十七','第十八','第十九','第二十','第二十一','第二十二','第二十三','第二十四'];
+    const raw = [
+      ['立春','りっしゅん','RISSHUN','2月4日 — 2月18日','春の始まり。寒さの底を越え、わずかに春の兆しが立ちはじめます。梅がほころび、地中ではいのちが動き出す、一年の節目の節気です。',['蕗の薹','菜の花','伊予柑','蛤'],'東風解凍','はるかぜ こおりを とく','春の東風が、張りつめた氷をやわらかく解かしはじめる。'],
+      ['雨水','うすい','USUI','2月19日 — 3月5日','降る雪が雨へと変わり、積もった氷が解け出す頃。大地がうるおい、草木が芽吹く準備をはじめます。昔から農耕の準備を始める目安とされてきました。',['菜の花','若布','蛤','春キャベツ'],'土脉潤起','つちのしょう うるおい おこる','春の雨が降り注ぎ、眠っていた大地をしっとりとうるおす。'],
+      ['啓蟄','けいちつ','KEICHITSU','3月6日 — 3月20日','土の中で冬ごもりしていた虫が、戸を開けて出てくる頃。やわらかな陽射しに誘われ、いのちが一斉に目覚めはじめます。',['蕗の薹','浅蜊','たらの芽','うど'],'蟄虫啓戸','すごもりむし とを ひらく','冬を越した虫たちが、土の戸を押し開けて顔を出す。'],
+      ['春分','しゅんぶん','SHUNBUN','3月21日 — 4月4日','昼と夜の長さがほぼ等しくなる日。これを境に陽が伸び、春が本番を迎えます。自然をたたえ生物をいつくしむ日でもあります。',['山菜','桜鯛','新若布','蛤'],'雀始巣','すずめ はじめて すくう','雀が枯れ草を運び、軒先に巣を作りはじめる。'],
+      ['清明','せいめい','SEIMEI','4月5日 — 4月19日','「清浄明潔」の略。万物が清らかで生き生きと輝く頃。花が咲きそろい、いのちのいぶきに満ちあふれます。',['筍','初鰹','よもぎ','蛍烏賊'],'玄鳥至','つばめ きたる','燕が海をこえ、南の国から渡ってくる。'],
+      ['穀雨','こくう','KOKUU','4月20日 — 5月5日','穀物をうるおす春の雨が降る頃。種まきには絶好の時期とされ、農家にとって大切な節目です。やがて八十八夜を迎えます。',['空豆','初鰹','新茶','アスパラ'],'葭始生','あし はじめて しょうず','水辺の葦が、水面を割って芽を吹きはじめる。'],
+      ['立夏','りっか','RIKKA','5月6日 — 5月20日','夏の始まり。新緑がまぶしく、爽やかな風が薫ります。野山が生命力にあふれ、過ごしやすい好季節を迎えます。',['新じゃが','鯵','グリーンピース','蚕豆'],'蛙始鳴','かわず はじめて なく','田の蛙が鳴きはじめ、初夏の到来を告げる。'],
+      ['小満','しょうまん','SHOMAN','5月21日 — 6月5日','草木が成長し、生命が次第に満ちていく頃。秋にまいた麦が穂をつけ、ひとまず安心する——その「満足」が名の由来です。',['空豆','鱚','枇杷','新玉葱'],'紅花栄','べにばな さかう','紅花が一面に咲き誇り、野を彩る。'],
+      ['芒種','ぼうしゅ','BOSHU','6月6日 — 6月20日','稲や麦など、芒(のぎ)のある穀物の種をまく頃。やがて梅雨に入り、しっとりと湿り気を帯びてきます。',['梅','鮎','らっきょう','新生姜'],'螳螂生','かまきり しょうず','秋に産みつけられた卵から、かまきりが生まれ出る。'],
+      ['夏至','げし','GESHI','6月21日 — 7月6日','一年でもっとも昼が長く、夜が短い頃。陽の力が極まります。梅雨のさなか、田植えに追われる時季でもあります。',['蛸','鱧','茗荷','枝豆'],'乃東枯','なつかれくさ かるる','冬至に芽吹いた夏枯草が、ひっそりと枯れていく。'],
+      ['小暑','しょうしょ','SHOSHO','7月7日 — 7月22日','梅雨が明け、本格的な夏の熱気が訪れる頃。暑さはまだ「小さい」けれど、日に日に勢いを増していきます。蝉が鳴きはじめ、神田の街にも夏が満ちていきます。',['鱧','冬瓜','とうもろこし','茄子'],'温風至','あつかぜ いたる','梅雨明けの、あたたかく湿った南風が吹きはじめる。'],
+      ['大暑','たいしょ','TAISHO','7月23日 — 8月7日','一年でもっとも暑さが厳しい頃。夏の盛りを迎えます。打ち水や土用の丑など、暑気払いの知恵が暮らしを彩ります。',['鰻','茄子','桃','枝豆'],'桐始結花','きり はじめて はなを むすぶ','桐の木が、来年に向けて固い実を結びはじめる。'],
+      ['立秋','りっしゅう','RISSHU','8月8日 — 8月22日','暦の上では秋の始まり。暑さの盛りですが、この日を境に挨拶は「残暑見舞い」へ。ふとした風に秋の気配が混じります。',['梨','無花果','鱸','すだち'],'涼風至','すずかぜ いたる','夏の暑さの中に、ひとすじの涼しい風が立つ。'],
+      ['処暑','しょしょ','SHOSHO','8月23日 — 9月7日','「処」は止まるの意。厳しい暑さがようやくやわらぐ頃。朝夕に涼しさが増し、虫の音に秋を感じます。',['秋刀魚','すだち','無花果','南瓜'],'綿柎開','わたのはなしべ ひらく','綿を包むがくが開き、白い綿毛がのぞく。'],
+      ['白露','はくろ','HAKURO','9月8日 — 9月22日','大気が冷え、草の葉に白い露が結ぶ頃。秋が本格的に深まり、夜空が澄んで月が美しく見えはじめます。',['里芋','栗','戻り鰹','葡萄'],'草露白','くさのつゆ しろし','草に宿った朝露が、白く光ってきらめく。'],
+      ['秋分','しゅうぶん','SHUBUN','9月23日 — 10月7日','再び昼と夜の長さがほぼ等しくなる日。これを境に夜が長くなります。先祖を敬い、実りに感謝する頃です。',['茸','秋鮭','銀杏','栗'],'雷乃収声','かみなり すなわち こえを おさむ','夏に轟いた雷が、声をひそめてゆく。'],
+      ['寒露','かんろ','KANRO','10月8日 — 10月23日','草木に冷たい露が宿る頃。空は高く澄みわたり、秋が深まります。実りの秋、収穫の真っ盛りを迎えます。',['秋刀魚','柿','新蕎麦','零余子'],'鴻雁来','こうがん きたる','北の国から、雁が列をなして渡ってくる。'],
+      ['霜降','そうこう','SOKO','10月24日 — 11月6日','露が冷気で霜に変わり、降りはじめる頃。山々は紅葉に染まり、冬の足音が近づきます。一年の実りを締めくくる時季です。',['薩摩芋','鰤','林檎','零余子'],'霜始降','しも はじめて ふる','秋の冷え込みが深まり、初霜が地に降りる。'],
+      ['立冬','りっとう','RITTO','11月7日 — 11月21日','冬の始まり。陽の光が弱まり、冷たい木枯らしが吹きはじめます。木々の葉が落ち、冬支度が本格化します。',['牡蠣','葱','蜜柑','大根'],'山茶始開','つばき はじめて ひらく','山茶花(さざんか)が、冬の口火を切って咲きはじめる。'],
+      ['小雪','しょうせつ','SHOSETSU','11月22日 — 12月6日','わずかに雪が降りはじめる頃。まだ積もるほどではないものの、北国からは初雪の便りが届きます。',['大根','鰤','柚子','蓮根'],'虹蔵不見','にじ かくれて みえず','空気が乾き、虹を見かけることがなくなる。'],
+      ['大雪','たいせつ','TAISETSU','12月7日 — 12月21日','山々が雪に覆われ、平地にも雪が降り積もる頃。本格的な冬の到来です。動物たちは冬ごもりに入ります。',['河豚','白菜','蓮根','寒鰤'],'閉塞成冬','そら さむく ふゆと なる','天地の気が塞がり、いよいよ真冬となる。'],
+      ['冬至','とうじ','TOJI','12月22日 — 1月5日','一年でもっとも昼が短く、夜が長い頃。陰が極まり、ここから陽に転じる「一陽来復」。柚子湯と南瓜で無病息災を願います。',['南瓜','柚子','蟹','葱'],'乃東生','なつかれくさ しょうず','夏に枯れた草が、寒さの中で芽吹きはじめる。'],
+      ['小寒','しょうかん','SHOKAN','1月6日 — 1月19日','「寒の入り」。これから寒さがいよいよ厳しくなります。寒中見舞いを出し、寒稽古に励む時季です。',['七草','寒鰤','金柑','春菊'],'芹乃栄','せり すなわち さかう','冷たい水辺で、芹が青々とよく育つ。'],
+      ['大寒','だいかん','DAIKAN','1月20日 — 2月3日','一年でもっとも寒さが厳しい頃。寒の極み。寒仕込みの味噌や酒が仕込まれ、やがて訪れる春を静かに待ちます。',['蕪','鱈','蜜柑','寒蜆'],'款冬華','ふきのはな さく','雪の下で、蕗の薹がそっと蕾をのぞかせる。'],
+    ];
+    const byJp = {};
+    raw.forEach((r, i) => { byJp[r[0]] = { jp: r[0], reading: r[1], romaji: r[2], range: r[3], body: r[4], shun: r[5], kouName: r[6], kouReading: r[7], kouBody: r[8], no: ord[i], readingLatin: r[1] + ' / ' + r[2] }; });
+    const select = (jp) => () => this.setState({ selected: jp });
+    const mk = (jp) => {
+      const d = byJp[jp];
+      const cur = jp === selected;
+      return { jp, reading: d.reading, romaji: d.romaji, current: cur, notCurrent: !cur, onSelect: select(jp) };
+    };
+    const seasons = [
+      { name: '春', latin: 'SPRING', terms: ['立春','雨水','啓蟄','春分','清明','穀雨'].map(mk) },
+      { name: '夏', latin: 'SUMMER', terms: ['立夏','小満','芒種','夏至','小暑','大暑'].map(mk) },
+      { name: '秋', latin: 'AUTUMN', terms: ['立秋','処暑','白露','秋分','寒露','霜降'].map(mk) },
+      { name: '冬', latin: 'WINTER', terms: ['立冬','小雪','大雪','冬至','小寒','大寒'].map(mk) },
+    ];
+    const current = byJp[selected];
+    const menu = [
+      { id: 'menu-1', tag: '椀', name: '鱧と冬瓜の葛仕立て', reading: 'はも と とうがん', desc: '夏至の走り、淡白な鱧をやさしい葛のお椀で。冬瓜のとろみに出汁を含ませて。' },
+      { id: 'menu-2', tag: '菜', name: '焼き茄子の煮浸し', reading: 'やきなす の にびたし', desc: '香ばしく焼いた茄子を、冷たい一番出汁にひたして。新生姜を添えて涼やかに。' },
+      { id: 'menu-3', tag: '飯', name: 'とうもろこしの土鍋ごはん', reading: 'とうもろこし の どなべごはん', desc: '甘みの立つ夏のとうもろこしを、芯ごと土鍋で炊き込んで。' },
+      { id: 'menu-4', tag: '和', name: '枝豆と新生姜の白和え', reading: 'えだまめ と しんしょうが の しらあえ', desc: '採れたての枝豆に、新生姜の香りをそっと忍ばせて。' },
+    ];
+    const gallery = [
+      { id: 'gal-1', label: '季節の一皿', ph: '料理写真', span: 'grid-column:span 2;grid-row:span 2;' },
+      { id: 'gal-2', label: '土鍋ごはん', ph: '料理写真', span: 'grid-column:span 1;grid-row:span 1;' },
+      { id: 'gal-3', label: '旬の野菜', ph: '食材写真', span: 'grid-column:span 1;grid-row:span 1;' },
+      { id: 'gal-4', label: '神田の朝', ph: '街の写真', span: 'grid-column:span 1;grid-row:span 1;' },
+      { id: 'gal-5', label: 'カウンター', ph: '店内写真', span: 'grid-column:span 1;grid-row:span 1;' },
+      { id: 'gal-6', label: '店構え', ph: '外観写真', span: 'grid-column:span 2;grid-row:span 1;' },
+    ];
+    return {
+      showReadings, showDates, seasons, current, menu, gallery,
+    };
+  }
+}
+</script>
+</body>
+</html>
