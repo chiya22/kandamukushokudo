@@ -15,6 +15,7 @@
   </svg>
 </template>
 <helmet>
+<title>神田無垢食堂 | 東京のまんなかで、季節をいただく。</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&amp;family=Zen+Kaku+Gothic+New:wght@300;400;500&amp;display=swap" rel="stylesheet">
@@ -28,7 +29,8 @@
   @keyframes muku-rise{from{transform:translateY(16px);}to{transform:translateY(0);}}
   @keyframes muku-fade{from{transform:translateY(8px);}to{transform:translateY(0);}}
   image-slot{display:block;}
-  .gal-cell{position:relative;}
+  .ig-tile:hover .ig-overlay{opacity:1 !important;}
+  .ig-tile{position:relative;display:block;text-decoration:none;}
   .gal-span-2x2{grid-column:span 2;grid-row:span 2;}
   .gal-span-2x1{grid-column:span 2;grid-row:span 1;}
 
@@ -43,7 +45,7 @@
     #top + section{padding:104px 22px 0 !important;min-height:auto !important;}
     #top + section > div{letter-spacing:0.24em !important;font-size:10px !important;margin-bottom:22px !important;}
     #top + section > img[alt="神田無垢食堂"]{width:208px !important;margin-bottom:26px !important;}
-    #top + section h1{font-size:34px !important;line-height:1.55 !important;margin-bottom:20px !important;}
+    #top + section h1{font-size:34px !important;line-height:1.55 !important;margin-bottom:20px !important;transform:translateX(20px) !important;}
     #top + section p{font-size:14px !important;line-height:2 !important;}
 
     /* コンセプト */
@@ -78,14 +80,15 @@
   }
 
   @media (max-width:480px){
-    #top + section h1{font-size:29px !important;}
+    #top + section h1{font-size:29px !important;transform:none !important;}
     #top + section > img[alt="神田無垢食堂"]{width:176px !important;}
     #concept h2{font-size:25px !important;}
     #sekki > div > div:last-child{grid-template-columns:1fr 1fr !important;}
     #sekki span[style*="80px"]{font-size:42px !important;}
-    /* ギャラリー：1列に */
-    #gallery > div > div:last-child{grid-template-columns:1fr !important;grid-auto-rows:200px !important;}
-    #gallery > div > div:last-child > div{grid-area:auto !important;}
+    /* 店内紹介 */
+    #gallery{padding:80px 18px !important;}
+    #gallery > div > div:last-child{grid-template-columns:repeat(2,1fr) !important;grid-auto-rows:200px !important;}
+    #gallery > div > div:last-child > .ig-tile{grid-column:auto !important;grid-row:auto !important;}
     #info dl{grid-template-columns:76px 1fr !important;}
   }
 </style>
@@ -103,7 +106,10 @@
       <a href="#menu" style="font-size: 13px; letter-spacing: 0.14em; color: #054975; text-decoration: none">献立</a>
       <a href="#gallery" style="font-size: 13px; letter-spacing: 0.14em; color: #054975; text-decoration: none">ギャラリー</a>
       <a href="#info" style="font-size: 13px; letter-spacing: 0.14em; color: #054975; text-decoration: none">店舗情報</a>
-      <a href="#info" style="font-size: 13px; letter-spacing: 0.18em; color: #faf6ec; text-decoration: none; padding: 9px 20px; border-radius: 2px; background-color: #054975">ご予約</a>
+      <a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;text-decoration:none;">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="url(#ig-nav-grad)" stroke-width="1.7"><defs><radialGradient id="ig-nav-grad" cx="28%" cy="108%" r="135%"><stop offset="0%" stop-color="#fdd87d"></stop><stop offset="22%" stop-color="#fa9137"></stop><stop offset="42%" stop-color="#f1503f"></stop><stop offset="62%" stop-color="#d92e7f"></stop><stop offset="82%" stop-color="#a02bbf"></stop><stop offset="100%" stop-color="#5b51d8"></stop></radialGradient></defs><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="url(#ig-nav-grad)" stroke="none"></circle></svg>
+      </a>
+      <a href="#info" style="font-size: 13px; letter-spacing: 0.18em; color: #faf6ec; text-decoration: none; padding: 9px 20px; border-radius: 2px; background-color: #054975">ディナー予約</a>
     </div>
   </nav>
 
@@ -112,8 +118,13 @@
   <!-- HERO : 型染め全景 -->
   <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:130px 24px 0;text-align:center;position:relative;">
     <div style="animation:muku-fade 1.2s ease both;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.42em;color:#044a74;opacity:0.65;margin-bottom:30px;white-space:nowrap;">MUKU&nbsp;SHOKUDO&nbsp;—&nbsp;KANDA,&nbsp;TOKYO</div>
+    <div style="display:inline-flex;align-items:center;gap:12px;animation:muku-rise 1s ease both;background:#c8922e;color:#fff;padding:11px 26px;border-radius:2px;margin-bottom:30px;box-shadow:0 10px 24px rgba(200,146,46,0.34);">
+      <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;opacity:0.9;">GRAND OPEN</span>
+      <span style="height:11px;width:1px;background:rgba(255,255,255,0.55);"></span>
+      <span style="font-size:14px;letter-spacing:0.16em;font-weight:700;">2026.7.7 OPEN</span>
+    </div>
     <img src="assets/logo.svg" alt="神田無垢食堂" style="width: 360px; height: auto; margin-bottom: 36px; animation: muku-rise 1s ease both">
-    <h1 style="font-size: 64px; font-weight: 700; line-height: 1.5; color: #054975; letter-spacing: 0.08em; margin-bottom: 26px; animation: muku-rise 1s ease 0.1s both">東京のまんなかで、<br>季節をいただく。</h1>
+    <h1 style="font-size: 64px; font-weight: 700; line-height: 1.5; color: #054975; letter-spacing: 0.08em; margin-bottom: 26px; animation: muku-rise 1s ease 0.1s both; margin-left: 0px; padding-left: 0px; transform: translateX(40px)">東京のまんなかで、<br>季節をいただく。</h1>
     <p style="font-size: 16px; line-height: 2.2; color: #4a4740; letter-spacing: 0.06em; animation: muku-rise 1s ease 0.2s both">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
     <img src="assets/keyvisual_trans.svg" alt="" style="width:min(1180px,96%);height:auto;margin-top:6px;animation:muku-fade 1.6s ease 0.3s both;">
   </section>
@@ -121,7 +132,7 @@
   <!-- CONCEPT -->
   <section id="concept" style="padding:130px 32px 120px;max-width:1080px;margin:0 auto;">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:46px;">
-      <span style="font-family: 'Zen Kaku Gothic New',sans-serif; font-size: 12px; letter-spacing: 0.4em; color: 054975">CONCEPT</span>
+      <span style="font-family: 'Zen Kaku Gothic New',sans-serif; font-size: 12px; letter-spacing: 0.4em; color: #054975">CONCEPT</span>
       <span style="height:1px;width:54px;background:rgba(4,74,116,0.4);"></span>
       <span style="font-size:13px;letter-spacing:0.3em;color:#044a74;">神田の物語</span>
     </div>
@@ -151,7 +162,7 @@
       <!-- 今の節気 -->
       <div style="display:grid;grid-template-columns:1fr;gap:0;background:#faf6ec;border-radius:4px;overflow:hidden;margin-bottom:64px;">
         <div style="padding:54px 56px;">
-          <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.34em;color:#9a8f73;margin-bottom:22px;">節気をえらぶ ・ {{ current.no }}節気</div>
+          <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.34em;color:#9a8f73;margin-bottom:22px;">{{ current.no }}節気</div>
           <div style="display:flex;align-items:baseline;gap:22px;margin-bottom:8px;">
             <span style="font-size: 80px; font-weight: 800; line-height: 1; color: #054975; letter-spacing: 0.04em">{{ current.jp }}</span>
             <span style="font-size:18px;color:#6c685f;letter-spacing:0.1em;">{{ current.readingLatin }}</span>
@@ -227,20 +238,34 @@
     </div>
   </section>
 
-  <!-- ギャラリー -->
+  <!-- ギャラリー / Instagram -->
   <section id="gallery" style="background:#f1e8d6;padding:120px 32px;">
     <div style="max-width:1080px;margin:0 auto;">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:46px;">
-        <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.4em;color:#044a74;">GALLERY</span>
-        <span style="height:1px;width:54px;background:rgba(4,74,116,0.4);"></span>
-        <span style="font-size:13px;letter-spacing:0.3em;color:#044a74;">神田無垢食堂のある風景</span>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:46px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;">
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;letter-spacing:0.4em;color:#044a74;">INSTAGRAM</span>
+            <span style="height:1px;width:54px;background:rgba(4,74,116,0.4);"></span>
+            <span style="font-size:13px;letter-spacing:0.3em;color:#044a74;">神田無垢食堂のある風景</span>
+          </div>
+          <a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-size:18px;font-weight:700;letter-spacing:0.06em;color:#054975;text-decoration:none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+            @kanda_mukushokudo
+          </a>
+        </div>
+        <a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-size:14px;letter-spacing:0.14em;color:#faf6ec;background:#054975;text-decoration:none;padding:12px 26px;border-radius:2px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+          フォローする
+        </a>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;">
         <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
-          <div class="gal-cell {{ g.span }}">
+          <a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" class="ig-tile {{ g.span }}">
             <image-slot id="{{ g.id }}" style="width:100%;height:100%;display:block;" shape="rounded" radius="3" placeholder="{{ g.ph }}"></image-slot>
-            <span style="position:absolute;left:14px;bottom:12px;font-size:12px;letter-spacing:0.16em;color:#044a74;background:rgba(250,246,236,0.9);padding:4px 10px;border-radius:2px;pointer-events:none;">{{ g.label }}</span>
-          </div>
+            <span class="ig-overlay" style="position:absolute;inset:0;border-radius:3px;background:rgba(5,73,117,0.42);opacity:0;transition:opacity 0.25s ease;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#faf6ec" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="#faf6ec" stroke="none"></circle></svg>
+            </span>
+          </a>
         </sc-for>
       </div>
     </div>
@@ -265,12 +290,38 @@
             <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">定休日</dt>
             <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">土曜・日曜・祝日</dd>
             <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">席数</dt>
-            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">カウンター 8席・テーブル 16席</dd>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">店内 20席・テラス 20席</dd>
+            <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);">SNS</dt>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);"><a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;color:#e3ecf2;text-decoration:none;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>@kanda_mukushokudo</a></dd>
             <dt style="font-size:13px;letter-spacing:0.2em;color:#9fbace;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);border-bottom:1px solid rgba(255,255,255,0.18);">アクセス</dt>
-            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);border-bottom:1px solid rgba(255,255,255,0.18);">竹橋駅（東西線）<div>　3b KKRホテル東京玄関前出口より徒歩2分<br>神保町駅（三田線・新宿線・半蔵門線）</div><div>　A9出口より徒歩7分<br>大手町駅（三田線・千代田線・半蔵門線・丸の内線）</div><div>　C2b出口より徒歩8分<br>小川町駅（新宿線・千代田線）</div><div>　B7出口より徒歩8分<br>JR神田駅</div><div>　西口出口・出世不動通りより徒歩12分</div></dd>
+            <dd style="font-size:15px;line-height:1.9;letter-spacing:0.04em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.18);border-bottom:1px solid rgba(255,255,255,0.18);">
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <div>
+                  <span style="display:inline-flex;align-items:center;gap:7px;color:#e9f0f5;font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9fbace" stroke-width="1.7" style="flex:none;"><rect x="5" y="3" width="14" height="14" rx="3"></rect><path d="M5 11h14"></path><path d="M8.5 20l-1.5 2"></path><path d="M15.5 20l1.5 2"></path><circle cx="8.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle><circle cx="15.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle></svg>竹橋駅（東西線）</span>
+                  <div style="color:#bdd3e1;">3b KKRホテル東京玄関前出口より徒歩2分</div>
+                </div>
+                <div>
+                  <span style="display:inline-flex;align-items:center;gap:7px;color:#e9f0f5;font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9fbace" stroke-width="1.7" style="flex:none;"><rect x="5" y="3" width="14" height="14" rx="3"></rect><path d="M5 11h14"></path><path d="M8.5 20l-1.5 2"></path><path d="M15.5 20l1.5 2"></path><circle cx="8.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle><circle cx="15.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle></svg>神保町駅（三田線・新宿線・半蔵門線）</span>
+                  <div style="color:#bdd3e1;">A9出口より徒歩7分</div>
+                </div>
+                <div>
+                  <span style="display:inline-flex;align-items:center;gap:7px;color:#e9f0f5;font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9fbace" stroke-width="1.7" style="flex:none;"><rect x="5" y="3" width="14" height="14" rx="3"></rect><path d="M5 11h14"></path><path d="M8.5 20l-1.5 2"></path><path d="M15.5 20l1.5 2"></path><circle cx="8.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle><circle cx="15.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle></svg>大手町駅（三田線・千代田線・半蔵門線・丸の内線）</span>
+                  <div style="color:#bdd3e1;">C2b出口より徒歩8分</div>
+                </div>
+                <div>
+                  <span style="display:inline-flex;align-items:center;gap:7px;color:#e9f0f5;font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9fbace" stroke-width="1.7" style="flex:none;"><rect x="5" y="3" width="14" height="14" rx="3"></rect><path d="M5 11h14"></path><path d="M8.5 20l-1.5 2"></path><path d="M15.5 20l1.5 2"></path><circle cx="8.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle><circle cx="15.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle></svg>小川町駅（新宿線・千代田線）</span>
+                  <div style="color:#bdd3e1;">B7出口より徒歩8分</div>
+                </div>
+                <div>
+                  <span style="display:inline-flex;align-items:center;gap:7px;color:#e9f0f5;font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9fbace" stroke-width="1.7" style="flex:none;"><rect x="5" y="3" width="14" height="14" rx="3"></rect><path d="M5 11h14"></path><path d="M8.5 20l-1.5 2"></path><path d="M15.5 20l1.5 2"></path><circle cx="8.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle><circle cx="15.5" cy="14" r="0.9" fill="#9fbace" stroke="none"></circle></svg>JR神田駅</span>
+                  <div style="color:#bdd3e1;">西口出口・出世不動通りより徒歩12分</div>
+                </div>
+              </div>
+            </dd>
           </dl>
-          <div style="display:flex;gap:14px;margin-top:34px;">
-            <a href="tel:0352598051" style="font-size:14px;letter-spacing:0.14em;color:#044a74;background:#faf6ec;text-decoration:none;padding:13px 30px;border-radius:2px;">電話でご予約 03-5259-8051</a>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;">
+            <a href="tel:0352598051" style="font-size:14px;letter-spacing:0.14em;color:#044a74;background:#faf6ec;text-decoration:none;padding:13px 30px;border-radius:2px;">電話でディナー予約 03-5259-8051</a>
+            <a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-size:14px;letter-spacing:0.14em;color:#faf6ec;background:transparent;border:1px solid rgba(255,255,255,0.45);text-decoration:none;padding:13px 26px;border-radius:2px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>Instagram</a>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px;">
@@ -285,6 +336,10 @@
   <footer style="background:#03395b;padding:70px 32px 56px;text-align:center;">
     <img src="assets/logo_white.svg" alt="神田無垢食堂" style="width: 360px; height: auto; margin-bottom: 24px">
     <p style="font-size:13px;line-height:2;letter-spacing:0.18em;color:#bdd3e1;margin-bottom:30px;">東京（江戸）の時報となる食堂。<br>食を通して季節を味わい、人と人とが結ばれる場所へ。</p>
+    <a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;color:#bdd3e1;text-decoration:none;font-size:12px;letter-spacing:0.18em;border:1px solid rgba(189,211,225,0.4);border-radius:2px;padding:10px 22px;margin-bottom:30px;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+      <span>@kanda_mukushokudo</span>
+    </a>
     <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.3em;color:#6f93ab;">© KANDA MUKU SHOKUDO &nbsp;/&nbsp; KANDA, TOKYO</div>
   </footer>
 
@@ -352,6 +407,7 @@ class Component extends DCLogic {
       { id: 'gal-4', label: '神田の朝', ph: '街の写真', span: '' },
       { id: 'gal-5', label: 'カウンター', ph: '店内写真', span: '' },
       { id: 'gal-6', label: '店構え', ph: '外観写真', span: 'gal-span-2x1' },
+      { id: 'gal-7', label: '季節の便り', ph: '料理写真', span: 'gal-span-2x1' },
     ];
     return {
       showReadings, showDates, seasons, current, menu, gallery,
