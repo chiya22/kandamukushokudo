@@ -45,7 +45,8 @@
     #top + section{padding:104px 22px 0 !important;min-height:auto !important;}
     #top + section > div{letter-spacing:0.24em !important;font-size:10px !important;margin-bottom:22px !important;}
     #top + section > img[alt="神田無垢食堂"]{width:208px !important;margin-bottom:26px !important;}
-    #top + section h1{font-size:34px !important;line-height:1.55 !important;margin-bottom:20px !important;transform:translateX(20px) !important;}
+    #top + section h1{font-size:34px !important;line-height:1.55 !important;margin-bottom:20px !important;}
+    #hero-title-shift{transform:translateX(20px) !important;}
     #top + section p{font-size:14px !important;line-height:2 !important;}
 
     /* コンセプト */
@@ -80,14 +81,14 @@
   }
 
   @media (max-width:480px){
-    #top + section h1{font-size:29px !important;transform:none !important;}
+    #top + section h1{font-size:29px !important;}
+    #hero-title-shift{transform:none !important;}
     #top + section > img[alt="神田無垢食堂"]{width:176px !important;}
     #concept h2{font-size:25px !important;}
     #sekki > div > div:last-child{grid-template-columns:1fr 1fr !important;}
     #sekki span[style*="80px"]{font-size:42px !important;}
-    /* 店内紹介 */
-    #gallery{padding:80px 18px !important;}
-    #gallery > div > div:last-child{grid-template-columns:repeat(2,1fr) !important;grid-auto-rows:200px !important;}
+    /* ギャラリー：1列に */
+    #gallery > div > div:last-child{grid-template-columns:1fr !important;grid-auto-rows:200px !important;}
     #gallery > div > div:last-child > .ig-tile{grid-column:auto !important;grid-row:auto !important;}
     #info dl{grid-template-columns:76px 1fr !important;}
   }
@@ -124,7 +125,7 @@
       <span style="font-size:14px;letter-spacing:0.16em;font-weight:700;">2026.7.7 OPEN</span>
     </div>
     <img src="assets/logo.svg" alt="神田無垢食堂" style="width: 360px; height: auto; margin-bottom: 36px; animation: muku-rise 1s ease both">
-    <h1 style="font-size: 64px; font-weight: 700; line-height: 1.5; color: #054975; letter-spacing: 0.08em; margin-bottom: 26px; animation: muku-rise 1s ease 0.1s both; margin-left: 0px; padding-left: 0px; transform: translateX(40px)">東京のまんなかで、<br>季節をいただく。</h1>
+    <div id="hero-title-shift" style="transform:translateX(40px);"><h1 style="font-size: 64px; font-weight: 700; line-height: 1.5; color: #054975; letter-spacing: 0.08em; margin-bottom: 26px; animation: muku-rise 1s ease 0.1s both; margin-left: 0px; padding-left: 0px;">東京のまんなかで、<br>季節をいただく。</h1></div>
     <p style="font-size: 16px; line-height: 2.2; color: #4a4740; letter-spacing: 0.06em; animation: muku-rise 1s ease 0.2s both">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
     <img src="assets/keyvisual_trans.svg" alt="" style="width:min(1180px,96%);height:auto;margin-top:6px;animation:muku-fade 1.6s ease 0.3s both;">
   </section>
