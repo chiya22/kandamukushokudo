@@ -370,11 +370,10 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showReadings&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showSekkiDates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;}}">
 class Component extends DCLogic {
-  state = { selected: '小暑' };
+  state = { selected: null };
   renderVals() {
     const showReadings = this.props.showReadings ?? true;
     const showDates = this.props.showSekkiDates ?? true;
-    const selected = this.state.selected;
     const ord = ['第一','第二','第三','第四','第五','第六','第七','第八','第九','第十','第十一','第十二','第十三','第十四','第十五','第十六','第十七','第十八','第十九','第二十','第二十一','第二十二','第二十三','第二十四'];
     const raw = [
       ['立春','りっしゅん','RISSHUN','2月4日 — 2月18日','春の始まり。寒さの底を越え、わずかに春の兆しが立ちはじめます。梅がほころび、地中ではいのちが動き出す、一年の節目の節気です。',['蕗の薹','菜の花','伊予柑','蛤'],'東風解凍','はるかぜ こおりを とく','春の東風が、張りつめた氷をやわらかく解かしはじめる。'],
@@ -402,6 +401,25 @@ class Component extends DCLogic {
       ['小寒','しょうかん','SHOKAN','1月6日 — 1月19日','「寒の入り」。これから寒さがいよいよ厳しくなります。寒中見舞いを出し、寒稽古に励む時季です。',['七草','寒鰤','金柑','春菊'],'芹乃栄','せり すなわち さかう','冷たい水辺で、芹が青々とよく育つ。'],
       ['大寒','だいかん','DAIKAN','1月20日 — 2月3日','一年でもっとも寒さが厳しい頃。寒の極み。寒仕込みの味噌や酒が仕込まれ、やがて訪れる春を静かに待ちます。',['蕪','鱈','蜜柑','寒蜆'],'款冬華','ふきのはな さく','雪の下で、蕗の薹がそっと蕾をのぞかせる。'],
     ];
+    // 現在の日付から対象の節気を判定
+    const sekkiByDate = () => {
+      const now = new Date();
+      const todayKey = (now.getMonth() + 1) * 100 + now.getDate();
+      let best = null, bestKey = -1;
+      raw.forEach((r) => {
+        const m = r[3].split('—')[0].match(/(\d+)月(\d+)日/);
+        if (!m) return;
+        const key = parseInt(m[1], 10) * 100 + parseInt(m[2], 10);
+        if (key <= todayKey && key > bestKey) { bestKey = key; best = r[0]; }
+      });
+      // 年始（最初の節気の開始日より前）は、年をまたぐ最後の節気（冬至など）
+      return best || raw.reduce((acc, r) => {
+        const m = r[3].split('—')[0].match(/(\d+)月(\d+)日/);
+        const key = parseInt(m[1], 10) * 100 + parseInt(m[2], 10);
+        return key > (acc ? acc.key : -1) ? { jp: r[0], key } : acc;
+      }, null).jp;
+    };
+    const selected = this.state.selected || sekkiByDate();
     const byJp = {};
     raw.forEach((r, i) => { byJp[r[0]] = { jp: r[0], reading: r[1], romaji: r[2], range: r[3], body: r[4], shun: r[5], kouName: r[6], kouReading: r[7], kouBody: r[8], no: ord[i], readingLatin: r[1] + ' / ' + r[2] }; });
     const select = (jp) => () => this.setState({ selected: jp });
