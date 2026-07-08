@@ -37,6 +37,9 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
+  /* ページ全体を通常フローに戻し、モバイルでスクロールできるようにする */
+  html,body{height:auto !important;min-height:100dvh !important;overflow-x:hidden;}
+  #dc-root,#dc-root>.sc-host{height:auto !important;min-height:100dvh !important;}
   body{background:#faf6ec;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
   ::selection{background:#044a74;color:#faf6ec;}
   #info ::selection, #info::selection, footer ::selection, footer::selection{background:#e8c578;color:#053a5c;}
