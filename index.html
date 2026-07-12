@@ -149,10 +149,10 @@
 
   <!-- HERO : 複数写真コラージュ × 中央寄せ -->
   <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:130px 24px 96px;text-align:center;position:relative;overflow:hidden;background:#0d2233;">
-    <div id="hero-photos" data-hero="{{ heroModeAttr }}" style="{{ heroPhotosStyle }}">
-      <image-slot id="hero-1" src="assets/photos/hero-1.webp" style="{{ slot1Style }}" placeholder="料理写真①をドロップ"></image-slot>
-      <image-slot id="hero-2" src="assets/photos/hero-2.webp" style="{{ slot2Style }}" placeholder="料理写真②をドロップ"></image-slot>
-      <image-slot id="hero-3" src="assets/photos/hero-3.webp" style="{{ slot3Style }}" placeholder="料理写真③をドロップ"></image-slot>
+    <div id="hero-photos" data-hero="row" style="position:absolute;inset:0;z-index:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#0d2233;">
+      <image-slot id="hero-1" src="assets/photos/hero-1.webp" style="width:100%;height:100%;display:block;" placeholder="料理写真①をドロップ"></image-slot>
+      <image-slot id="hero-2" src="assets/photos/hero-2.webp" style="width:100%;height:100%;display:block;" placeholder="料理写真②をドロップ"></image-slot>
+      <image-slot id="hero-3" src="assets/photos/hero-3.webp" style="width:100%;height:100%;display:block;" placeholder="料理写真③をドロップ"></image-slot>
     </div>
     <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg, rgba(6,24,40,0.66) 0%, rgba(6,24,40,0.40) 46%, rgba(6,24,40,0.70) 100%);"></div>
     <div id="hero-content" style="position:relative;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;max-width:920px;">
