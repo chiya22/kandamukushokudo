@@ -45,7 +45,12 @@
   #info ::selection, #info::selection, footer ::selection, footer::selection{background:#e8c578;color:#053a5c;}
   @keyframes muku-rise{from{transform:translateY(16px);}to{transform:translateY(0);}}
   @keyframes muku-fade{from{transform:translateY(8px);}to{transform:translateY(0);}}
+<<<<<<< HEAD
   @keyframes muku-slide{0%{opacity:0;}4%{opacity:1;}30%{opacity:1;}36%{opacity:0;}100%{opacity:0;}}
+=======
+  @keyframes muku-xf-b{0%,28%{opacity:0;}36%,61%{opacity:1;}69%,100%{opacity:0;}}
+  @keyframes muku-xf-c{0%,61%{opacity:0;}69%,94%{opacity:1;}100%{opacity:0;}}
+>>>>>>> b7eb2f7fceb34eec7fa7c76b03c81787d3c4e9ea
   image-slot{display:block;}
   .ig-tile:hover .ig-overlay{opacity:1 !important;}
   .gal-2x2{grid-column:span 2;grid-row:span 2;}
@@ -60,12 +65,23 @@
     nav>div a:not(:last-child){display:none !important;}
 
     /* ヒーロー */
+<<<<<<< HEAD
     #top + section{padding:104px 22px 70px !important;min-height:90vh !important;}
     #hero-photos[data-hero="row"]{grid-template-columns:1fr !important;grid-template-rows:1fr !important;}
     #hero-photos[data-hero="row"] #hero-2, #hero-photos[data-hero="row"] #hero-3{display:none !important;}
     #hero-content > div:first-child{letter-spacing:0.26em !important;font-size:10px !important;margin-bottom:20px !important;}
     #hero-content img[alt="神田無垢食堂"]{width:220px !important;margin-bottom:26px !important;}
     #top + section h1{font-size:32px !important;line-height:1.55 !important;margin-bottom:20px !important;}
+=======
+    #top + section{padding:104px 22px 70px !important;min-height:88vh !important;}
+    #hero-photos{grid-template-columns:1fr !important;grid-template-rows:repeat(3, 1fr);}
+    #hero-split{grid-template-columns:1fr !important;gap:36px !important;}
+    #hero-split h1{font-size:34px !important;line-height:1.55 !important;}
+    #hero-content > div{letter-spacing:0.24em !important;font-size:10px !important;margin-bottom:22px !important;}
+    #top + section img[alt="神田無垢食堂"]{width:208px !important;margin-bottom:26px !important;}
+    #top + section h1{font-size:34px !important;line-height:1.55 !important;margin-bottom:20px !important;}
+    #hero-title-shift{transform:translateX(20px) !important;}
+>>>>>>> b7eb2f7fceb34eec7fa7c76b03c81787d3c4e9ea
     #top + section p{font-size:14px !important;line-height:2 !important;}
 
     /* コンセプト */
@@ -146,6 +162,7 @@
 
   <div id="top"></div>
 
+<<<<<<< HEAD
   <!-- HERO : 複数写真コラージュ × 中央寄せ -->
   <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:130px 24px 96px;text-align:center;position:relative;overflow:hidden;background:#0d2233;">
     <div id="hero-photos" data-hero="{{ heroModeAttr }}" style="{{ heroPhotosStyle }}">
@@ -165,6 +182,60 @@
       <h1 style="font-size:clamp(34px,4.6vw,64px);font-weight:700;line-height:1.5;color:#faf6ec;letter-spacing:0.08em;margin-bottom:26px;animation:muku-rise 1s ease 0.1s both;text-shadow:0 2px 22px rgba(6,24,40,0.55);">東京のまんなかで、<br>季節を味わう。</h1>
       <p style="font-size:clamp(14px,1.1vw,16px);line-height:2.2;color:#ece7da;letter-spacing:0.06em;animation:muku-rise 1s ease 0.2s both;text-shadow:0 1px 14px rgba(6,24,40,0.55);">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
     </div>
+=======
+  <!-- HERO : 料理写真フルブリード -->
+  <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:130px 24px 90px;text-align:center;position:relative;overflow:hidden;">
+    <sc-if value="{{ heroSlideshow }}" hint-placeholder-val="{{ false }}">
+      <div id="hero-slideshow" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;background:#0d2233;">
+        <image-slot id="hero-1" src="assets/photos/hero-1.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;" placeholder="料理写真①をドロップ"></image-slot>
+        <image-slot id="hero-2" src="assets/photos/hero-2.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;opacity:0;animation:muku-xf-b 18s linear infinite;" placeholder="料理写真②をドロップ"></image-slot>
+        <image-slot id="hero-3" src="assets/photos/hero-3.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;opacity:0;animation:muku-xf-c 18s linear infinite;" placeholder="料理写真③をドロップ"></image-slot>
+      </div>
+    </sc-if>
+    <sc-if value="{{ heroCollage }}" hint-placeholder-val="{{ true }}">
+      <div id="hero-photos" style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(3, 1fr);z-index:0;background:#0d2233;">
+        <image-slot id="hero-1" src="assets/photos/hero-1.webp" style="width:100%;height:100%;display:block;" placeholder="料理写真①をドロップ"></image-slot>
+        <image-slot id="hero-2" src="assets/photos/hero-2.webp" style="width:100%;height:100%;display:block;" placeholder="料理写真②をドロップ"></image-slot>
+        <image-slot id="hero-3" src="assets/photos/hero-3.webp" style="width:100%;height:100%;display:block;" placeholder="料理写真③をドロップ"></image-slot>
+      </div>
+    </sc-if>
+    <sc-if value="{{ heroSplit }}" hint-placeholder-val="{{ false }}">
+      <div id="hero-split" style="position:relative;z-index:2;display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;width:min(1240px,100%);text-align:left;">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+          <div style="animation:muku-fade 1.2s ease both;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.42em;color:#044a74;opacity:0.65;margin-bottom:28px;white-space:nowrap;">MUKU&nbsp;SHOKUDO&nbsp;—&nbsp;KANDA,&nbsp;TOKYO</div>
+          <div style="display:inline-flex;align-items:center;gap:12px;animation:muku-rise 1s ease both;background:#c8922e;color:#fff;padding:11px 26px;border-radius:2px;margin-bottom:28px;box-shadow:0 10px 24px rgba(200,146,46,0.34);">
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;opacity:0.9;">GRAND OPEN</span>
+            <span style="height:11px;width:1px;background:rgba(255,255,255,0.55);"></span>
+            <span style="font-size:14px;letter-spacing:0.16em;font-weight:700;">2026.7.7 OPEN</span>
+          </div>
+          <img src="assets/logo.svg" alt="神田無垢食堂" style="width: 300px; height: auto; margin-bottom: 30px; animation: muku-rise 1s ease both">
+          <h1 style="font-size: 52px; font-weight: 700; line-height: 1.5; color: #054975; letter-spacing: 0.08em; margin-bottom: 24px; animation: muku-rise 1s ease 0.1s both;">東京のまんなかで、<br>季節を味わう。</h1>
+          <p style="font-size: 15.5px; line-height: 2.2; color: #4a4740; letter-spacing: 0.06em; animation: muku-rise 1s ease 0.2s both;">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
+        </div>
+        <div style="display:grid;grid-template-rows:1fr;gap:14px;animation:muku-fade 1.4s ease 0.15s both;">
+          <image-slot id="hero-1" src="assets/photos/hero-1.webp" style="width:100%;height:min(56vh,520px);display:block;" shape="rounded" radius="4" placeholder="料理写真①をドロップ"></image-slot>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <image-slot id="hero-2" src="assets/photos/hero-2.webp" style="width:100%;height:150px;display:block;" shape="rounded" radius="4" placeholder="料理写真②"></image-slot>
+            <image-slot id="hero-3" src="assets/photos/hero-3.webp" style="width:100%;height:150px;display:block;" shape="rounded" radius="4" placeholder="料理写真③"></image-slot>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ heroPhotoBg }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg, rgba(8,28,44,0.68) 0%, rgba(8,28,44,0.45) 46%, rgba(8,28,44,0.66) 100%);"></div>
+    <div id="hero-content" style="position:relative;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;">
+    <div style="animation:muku-fade 1.2s ease both;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.42em;color:#e8e2d2;opacity:0.75;margin-bottom:30px;white-space:nowrap;">MUKU&nbsp;SHOKUDO&nbsp;—&nbsp;KANDA,&nbsp;TOKYO</div>
+    <div style="display:inline-flex;align-items:center;gap:12px;animation:muku-rise 1s ease both;background:#c8922e;color:#fff;padding:11px 26px;border-radius:2px;margin-bottom:30px;box-shadow:0 10px 24px rgba(200,146,46,0.34);">
+      <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;opacity:0.9;">GRAND OPEN</span>
+      <span style="height:11px;width:1px;background:rgba(255,255,255,0.55);"></span>
+      <span style="font-size:14px;letter-spacing:0.16em;font-weight:700;">2026.7.7 OPEN</span>
+    </div>
+    <img src="assets/logo_white.svg" alt="神田無垢食堂" style="width: 360px; height: auto; margin-bottom: 36px; animation: muku-rise 1s ease both">
+    <div id="hero-title-shift" style="transform:translateX(40px);"><h1 style="font-size: 64px; font-weight: 700; line-height: 1.5; color: #faf6ec; letter-spacing: 0.08em; margin-bottom: 26px; animation: muku-rise 1s ease 0.1s both; margin-left: 0px; padding-left: 0px; text-shadow: 0 2px 22px rgba(8,28,44,0.5);">東京のまんなかで、<br>季節を味わう。</h1></div>
+    <p style="font-size: 16px; line-height: 2.2; color: #ece7da; letter-spacing: 0.06em; animation: muku-rise 1s ease 0.2s both; text-shadow: 0 1px 14px rgba(8,28,44,0.55);">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
+    </div>
+    </sc-if>
+>>>>>>> b7eb2f7fceb34eec7fa7c76b03c81787d3c4e9ea
   </section>
 
   <!-- CONCEPT -->
@@ -591,7 +662,11 @@
 
 </div>
 </x-dc>
+<<<<<<< HEAD
 <script type="text/x-dc" data-dc-script data-props="{&quot;heroMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;スライド切替&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;横に3枚&quot;,&quot;スライド切替&quot;],&quot;section&quot;:&quot;ヒーロー&quot;},&quot;showReadings&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showSekkiDates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;}}">
+=======
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;collage&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;split&quot;,&quot;slideshow&quot;,&quot;collage&quot;],&quot;section&quot;:&quot;ヒーロー&quot;},&quot;showReadings&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showSekkiDates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;}}">
+>>>>>>> b7eb2f7fceb34eec7fa7c76b03c81787d3c4e9ea
 class Component extends DCLogic {
   state = { selected: null };
   renderVals() {
@@ -607,6 +682,11 @@ class Component extends DCLogic {
     const heroModeAttr = heroRow ? 'row' : 'slide';
     const showReadings = this.props.showReadings ?? true;
     const showDates = this.props.showSekkiDates ?? true;
+    const heroStyle = this.props.heroStyle ?? 'collage';
+    const heroSplit = heroStyle === 'split';
+    const heroSlideshow = heroStyle === 'slideshow';
+    const heroCollage = heroStyle === 'collage';
+    const heroPhotoBg = !heroSplit;
     const ord = ['第一','第二','第三','第四','第五','第六','第七','第八','第九','第十','第十一','第十二','第十三','第十四','第十五','第十六','第十七','第十八','第十九','第二十','第二十一','第二十二','第二十三','第二十四'];
     const raw = [
       ['立春','りっしゅん','RISSHUN','2月4日 — 2月18日','春の始まり。寒さの底を越え、わずかに春の兆しが立ちはじめます。梅がほころび、地中ではいのちが動き出す、一年の節目の節気です。',['蕗の薹','菜の花','伊予柑','蛤'],'東風解凍','はるかぜ こおりを とく','春の東風が、張りつめた氷をやわらかく解かしはじめる。'],
@@ -687,6 +767,7 @@ class Component extends DCLogic {
     return {
       heroPhotosStyle, slot1Style, slot2Style, slot3Style, heroModeAttr,
       showReadings, showDates, seasons, current, menu, gallery,
+      heroSlideshow, heroCollage, heroSplit, heroPhotoBg,
     };
   }
 }
