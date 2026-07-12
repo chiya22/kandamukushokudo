@@ -37,11 +37,15 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
+  /* ページ全体を通常フローに戻し、モバイルでスクロールできるようにする */
+  html,body{height:auto !important;min-height:100dvh !important;overflow-x:hidden;}
+  #dc-root,#dc-root>.sc-host{height:auto !important;min-height:100dvh !important;}
   body{background:#faf6ec;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
   ::selection{background:#044a74;color:#faf6ec;}
   #info ::selection, #info::selection, footer ::selection, footer::selection{background:#e8c578;color:#053a5c;}
   @keyframes muku-rise{from{transform:translateY(16px);}to{transform:translateY(0);}}
   @keyframes muku-fade{from{transform:translateY(8px);}to{transform:translateY(0);}}
+  @keyframes muku-slide{0%{opacity:0;}4%{opacity:1;}30%{opacity:1;}36%{opacity:0;}100%{opacity:0;}}
   image-slot{display:block;}
   .ig-tile:hover .ig-overlay{opacity:1 !important;}
   .gal-2x2{grid-column:span 2;grid-row:span 2;}
@@ -56,11 +60,12 @@
     nav>div a:not(:last-child){display:none !important;}
 
     /* ヒーロー */
-    #top + section{padding:104px 22px 0 !important;min-height:auto !important;}
-    #top + section > div{letter-spacing:0.24em !important;font-size:10px !important;margin-bottom:22px !important;}
-    #top + section > img[alt="神田無垢食堂"]{width:208px !important;margin-bottom:26px !important;}
-    #top + section h1{font-size:34px !important;line-height:1.55 !important;margin-bottom:20px !important;}
-    #hero-title-shift{transform:translateX(20px) !important;}
+    #top + section{padding:104px 22px 70px !important;min-height:90vh !important;}
+    #hero-photos[data-hero="row"]{grid-template-columns:1fr !important;grid-template-rows:1fr !important;}
+    #hero-photos[data-hero="row"] #hero-2, #hero-photos[data-hero="row"] #hero-3{display:none !important;}
+    #hero-content > div:first-child{letter-spacing:0.26em !important;font-size:10px !important;margin-bottom:20px !important;}
+    #hero-content img[alt="神田無垢食堂"]{width:220px !important;margin-bottom:26px !important;}
+    #top + section h1{font-size:32px !important;line-height:1.55 !important;margin-bottom:20px !important;}
     #top + section p{font-size:14px !important;line-height:2 !important;}
 
     /* コンセプト */
@@ -141,18 +146,25 @@
 
   <div id="top"></div>
 
-  <!-- HERO : 型染め全景 -->
-  <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:130px 24px 0;text-align:center;position:relative;">
-    <div style="animation:muku-fade 1.2s ease both;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.42em;color:#044a74;opacity:0.65;margin-bottom:30px;white-space:nowrap;">MUKU&nbsp;SHOKUDO&nbsp;—&nbsp;KANDA,&nbsp;TOKYO</div>
-    <div style="display:inline-flex;align-items:center;gap:12px;animation:muku-rise 1s ease both;background:#c8922e;color:#fff;padding:11px 26px;border-radius:2px;margin-bottom:30px;box-shadow:0 10px 24px rgba(200,146,46,0.34);">
-      <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;opacity:0.9;">GRAND OPEN</span>
-      <span style="height:11px;width:1px;background:rgba(255,255,255,0.55);"></span>
-      <span style="font-size:14px;letter-spacing:0.16em;font-weight:700;">2026.7.7 OPEN</span>
+  <!-- HERO : 複数写真コラージュ × 中央寄せ -->
+  <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:130px 24px 96px;text-align:center;position:relative;overflow:hidden;background:#0d2233;">
+    <div id="hero-photos" data-hero="{{ heroModeAttr }}" style="{{ heroPhotosStyle }}">
+      <image-slot id="hero-1" src="assets/photos/hero-1.webp" style="{{ slot1Style }}" placeholder="料理写真①をドロップ"></image-slot>
+      <image-slot id="hero-2" src="assets/photos/hero-2.webp" style="{{ slot2Style }}" placeholder="料理写真②をドロップ"></image-slot>
+      <image-slot id="hero-3" src="assets/photos/hero-3.webp" style="{{ slot3Style }}" placeholder="料理写真③をドロップ"></image-slot>
     </div>
-    <img src="assets/logo.svg" alt="神田無垢食堂" style="width: 360px; height: auto; margin-bottom: 36px; animation: muku-rise 1s ease both">
-    <div id="hero-title-shift" style="transform:translateX(40px);"><h1 style="font-size: 64px; font-weight: 700; line-height: 1.5; color: #054975; letter-spacing: 0.08em; margin-bottom: 26px; animation: muku-rise 1s ease 0.1s both; margin-left: 0px; padding-left: 0px;">東京のまんなかで、<br>季節を味わう。</h1></div>
-    <p style="font-size: 16px; line-height: 2.2; color: #4a4740; letter-spacing: 0.06em; animation: muku-rise 1s ease 0.2s both">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
-    <img src="assets/keyvisual_trans.svg" alt="" style="width:min(1180px,96%);height:auto;margin-top:6px;animation:muku-fade 1.6s ease 0.3s both;">
+    <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg, rgba(6,24,40,0.66) 0%, rgba(6,24,40,0.40) 46%, rgba(6,24,40,0.70) 100%);"></div>
+    <div id="hero-content" style="position:relative;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;max-width:920px;">
+      <div style="animation:muku-fade 1.2s ease both;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.44em;color:#e8e2d2;opacity:0.82;margin-bottom:28px;">MUKU&nbsp;SHOKUDO&nbsp;—&nbsp;KANDA,&nbsp;TOKYO</div>
+      <div style="display:inline-flex;align-items:center;gap:12px;animation:muku-rise 1s ease both;background:#c8922e;color:#fff;padding:11px 26px;border-radius:2px;margin-bottom:30px;box-shadow:0 10px 24px rgba(200,146,46,0.34);">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;opacity:0.9;">GRAND OPEN</span>
+        <span style="height:11px;width:1px;background:rgba(255,255,255,0.55);"></span>
+        <span style="font-size:14px;letter-spacing:0.16em;font-weight:700;">2026.7.7</span>
+      </div>
+      <img src="assets/logo_white.svg" alt="神田無垢食堂" style="width:min(360px,78vw);height:auto;margin-bottom:34px;animation:muku-rise 1s ease both;">
+      <h1 style="font-size:clamp(34px,4.6vw,64px);font-weight:700;line-height:1.5;color:#faf6ec;letter-spacing:0.08em;margin-bottom:26px;animation:muku-rise 1s ease 0.1s both;text-shadow:0 2px 22px rgba(6,24,40,0.55);">東京のまんなかで、<br>季節を味わう。</h1>
+      <p style="font-size:clamp(14px,1.1vw,16px);line-height:2.2;color:#ece7da;letter-spacing:0.06em;animation:muku-rise 1s ease 0.2s both;text-shadow:0 1px 14px rgba(6,24,40,0.55);">神田のオフィス街で働く人たちにも、旬の訪れを感じてもらいたい。<br>二十四節気に合わせて献立を変えながら、その時季ならではの食材をお届けします。<br>今日の一皿が、季節の便りになりますように。</p>
+    </div>
   </section>
 
   <!-- CONCEPT -->
@@ -244,6 +256,12 @@
         <h2 style="font-size:40px;font-weight:700;line-height:1.5;color:#044a74;letter-spacing:0.06em;">ランチ</h2>
       </div>
       <p style="font-size:13px;line-height:2;color:#6c685f;letter-spacing:0.04em;max-width:320px;">主菜と副菜を選ぶ、二十四節気の定食。<br>すべてご飯・味噌汁付きです。</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;margin-bottom:56px;">
+      <image-slot id="lunch-1" src="assets/photos/lunch-1.webp" style="width:100%;height:220px;display:block;" shape="rounded" radius="4" placeholder="ランチ写真①をドロップ"></image-slot>
+      <image-slot id="lunch-2" src="assets/photos/lunch-2.webp" style="width:100%;height:220px;display:block;" shape="rounded" radius="4" placeholder="ランチ写真②をドロップ"></image-slot>
+      <image-slot id="lunch-3" src="assets/photos/lunch-3.webp" style="width:100%;height:220px;display:block;" shape="rounded" radius="4" placeholder="ランチ写真③をドロップ"></image-slot>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:26px;">
       <div style="background:#faf6ec;border:1px solid rgba(4,74,116,0.14);border-radius:4px;padding:34px 30px;">
@@ -413,34 +431,9 @@
 
       </div>
 
-      <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;color:#9fbace;margin-bottom:20px;order:1;">COURSE ・ 夏至の献立</div>
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;color:#9fbace;margin-bottom:20px;order:1;">COURSE ・ 献立について</div>
       <div style="background:#faf6ec;border-radius:4px;padding:40px 46px;margin-bottom:56px;order:1;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 52px;">
-          <div style="display:flex;gap:20px;padding:17px 0;border-bottom:1px solid rgba(4,74,116,0.1);">
-            <span style="flex:none;width:52px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.16em;color:#9a8f73;padding-top:5px;">前菜</span>
-            <span style="font-size:15.5px;color:#46433c;line-height:1.7;letter-spacing:0.03em;">二十四節気の旬の前菜4種盛り</span>
-          </div>
-          <div style="display:flex;gap:20px;padding:17px 0;border-bottom:1px solid rgba(4,74,116,0.1);">
-            <span style="flex:none;width:52px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.16em;color:#9a8f73;padding-top:5px;">鮮魚</span>
-            <span style="font-size:15.5px;color:#46433c;line-height:1.7;letter-spacing:0.03em;">鮮魚のカルパッチョ</span>
-          </div>
-          <div style="display:flex;gap:20px;padding:17px 0;border-bottom:1px solid rgba(4,74,116,0.1);">
-            <span style="flex:none;width:52px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.16em;color:#9a8f73;padding-top:5px;">サラダ</span>
-            <span style="font-size:15.5px;color:#46433c;line-height:1.7;letter-spacing:0.03em;">香川県産「あかつきビネガー」サラダ</span>
-          </div>
-          <div style="display:flex;gap:20px;padding:17px 0;border-bottom:1px solid rgba(4,74,116,0.1);">
-            <span style="flex:none;width:52px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.16em;color:#9a8f73;padding-top:5px;">揚げ物</span>
-            <span style="font-size:15.5px;color:#46433c;line-height:1.7;letter-spacing:0.03em;">当店名物 国産鶏の神田無垢食堂唐揚げ</span>
-          </div>
-          <div style="display:flex;gap:20px;padding:17px 0;border-bottom:1px solid rgba(4,74,116,0.1);">
-            <span style="flex:none;width:52px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.16em;color:#9a8f73;padding-top:5px;">メイン</span>
-            <span style="font-size:15.5px;color:#46433c;line-height:1.7;letter-spacing:0.03em;">高山産「飛騨の極み」ダレの牛肉ときのこ炒め</span>
-          </div>
-          <div style="display:flex;gap:20px;padding:17px 0;border-bottom:1px solid rgba(4,74,116,0.1);">
-            <span style="flex:none;width:52px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.16em;color:#9a8f73;padding-top:5px;">〆</span>
-            <span style="font-size:15.5px;color:#46433c;line-height:1.7;letter-spacing:0.03em;">和風パスタ</span>
-          </div>
-        </div>
+        <p style="font-size:15.5px;color:#46433c;line-height:2;letter-spacing:0.03em;">前菜から〆まで、二十四節気にあわせた旬の食材を使用したおまかせコースとなります。<br>その日ならではの味わいを、お届けいたします。</p>
       </div>
 
       <div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.34em;color:#9fbace;margin-bottom:20px;order:3;">DRINK ・ 飲み放題メニュー</div>
@@ -514,7 +507,7 @@
       <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;">
         <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
           <a href="https://www.instagram.com/kanda_mukushokudo/" target="_blank" rel="noopener" class="ig-tile {{ g.cls }}" style="position:relative;display:block;text-decoration:none;">
-            <image-slot id="{{ g.id }}" style="width:100%;height:100%;display:block;" shape="rounded" radius="3" placeholder="{{ g.ph }}"></image-slot>
+            <image-slot id="{{ g.id }}" src="{{ g.src }}" style="width:100%;height:100%;display:block;" shape="rounded" radius="3" placeholder="{{ g.ph }}"></image-slot>
             <span class="ig-overlay" style="position:absolute;inset:0;border-radius:3px;background:rgba(5,73,117,0.42);opacity:0;transition:opacity 0.25s ease;display:flex;align-items:center;justify-content:center;pointer-events:none;">
               <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#faf6ec" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="#faf6ec" stroke="none"></circle></svg>
             </span>
@@ -598,10 +591,20 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;showReadings&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showSekkiDates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;スライド切替&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;横に3枚&quot;,&quot;スライド切替&quot;],&quot;section&quot;:&quot;ヒーロー&quot;},&quot;showReadings&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showSekkiDates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;}}">
 class Component extends DCLogic {
   state = { selected: null };
   renderVals() {
+    const heroMode = this.props.heroMode ?? '横に3枚';
+    const heroRow = heroMode !== 'スライド切替';
+    const heroPhotosStyle = heroRow
+      ? { position: 'absolute', inset: 0, zIndex: 0, display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '6px', background: '#0d2233' }
+      : { position: 'absolute', inset: 0, zIndex: 0, background: '#0d2233' };
+    const mkSlot = (i) => heroRow
+      ? { width: '100%', height: '100%', display: 'block' }
+      : { position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', opacity: 0, animation: `muku-slide 18s ease-in-out ${-6 * i}s infinite` };
+    const slot1Style = mkSlot(0), slot2Style = mkSlot(1), slot3Style = mkSlot(2);
+    const heroModeAttr = heroRow ? 'row' : 'slide';
     const showReadings = this.props.showReadings ?? true;
     const showDates = this.props.showSekkiDates ?? true;
     const ord = ['第一','第二','第三','第四','第五','第六','第七','第八','第九','第十','第十一','第十二','第十三','第十四','第十五','第十六','第十七','第十八','第十九','第二十','第二十一','第二十二','第二十三','第二十四'];
@@ -673,15 +676,16 @@ class Component extends DCLogic {
       { id: 'menu-4', tag: '和', name: '枝豆と新生姜の白和え', reading: 'えだまめ と しんしょうが の しらあえ', desc: '採れたての枝豆に、新生姜の香りをそっと忍ばせて。' },
     ];
     const gallery = [
-      { id: 'gal-1', label: '季節の一皿', ph: '料理写真', cls: 'gal-2x2' },
-      { id: 'gal-2', label: '土鍋ごはん', ph: '料理写真', cls: 'gal-1x1' },
-      { id: 'gal-3', label: '旬の野菜', ph: '食材写真', cls: 'gal-1x1' },
-      { id: 'gal-4', label: '神田の朝', ph: '街の写真', cls: 'gal-1x1' },
-      { id: 'gal-5', label: 'カウンター', ph: '店内写真', cls: 'gal-1x1' },
-      { id: 'gal-6', label: '店構え', ph: '外観写真', cls: 'gal-2x1' },
-      { id: 'gal-7', label: '季節の便り', ph: '料理写真', cls: 'gal-2x1' },
+      { id: 'gal-1', label: '季節の一皿', ph: '料理写真', cls: 'gal-2x2', src: 'assets/photos/gal-1.webp' },
+      { id: 'gal-2', label: '土鍋ごはん', ph: '料理写真', cls: 'gal-1x1', src: 'assets/photos/gal-2.webp' },
+      { id: 'gal-3', label: '旬の野菜', ph: '食材写真', cls: 'gal-1x1', src: 'assets/photos/gal-3.webp' },
+      { id: 'gal-4', label: '神田の朝', ph: '街の写真', cls: 'gal-1x1', src: 'assets/photos/gal-4.webp' },
+      { id: 'gal-5', label: 'カウンター', ph: '店内写真', cls: 'gal-1x1', src: 'assets/photos/gal-5.webp' },
+      { id: 'gal-6', label: '店構え', ph: '外観写真', cls: 'gal-2x1', src: 'assets/photos/gal-6.webp' },
+      { id: 'gal-7', label: '季節の便り', ph: '料理写真', cls: 'gal-2x1', src: 'assets/photos/gal-7.webp' },
     ];
     return {
+      heroPhotosStyle, slot1Style, slot2Style, slot3Style, heroModeAttr,
       showReadings, showDates, seasons, current, menu, gallery,
     };
   }
