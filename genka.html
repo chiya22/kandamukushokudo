@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>原価計算</title>
+  <style>
+    :root {
+      --bg: #f6f4f1;
+      --card: #fff;
+      --text: #222;
+      --muted: #6b6b6b;
+      --line: #e4e0da;
+      --accent: #2f5d50;
+      --accent-hover: #244a40;
+      --focus: #2f5d50;
+      --error: #b42318;
+      --result-bg: #eef5f2;
+      --tap: 52px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+      padding:
+        max(16px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
+    }
+
+    main {
+      width: min(520px, 100%);
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 12px 0 16px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 16px 16px;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .case-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .case-option {
+      display: block;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .case-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .case-option span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      min-height: var(--tap);
+      padding: 12px 14px;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .case-option small {
+      flex: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .case-option b {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .case-option input:focus-visible + span {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .case-option input:checked + span {
+      border-color: var(--accent);
+      background: var(--result-bg);
+    }
+
+    .fields {
+      display: grid;
+      gap: 18px;
+    }
+
+    label.field {
+      display: grid;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: stretch;
+      min-height: var(--tap);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .input-wrap:focus-within {
+      border-color: var(--focus);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    .input-wrap input {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      min-height: var(--tap);
+      padding: 12px 12px 12px 14px;
+      border: 0;
+      background: transparent;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .input-wrap input:focus {
+      outline: none;
+    }
+
+    .unit {
+      display: flex;
+      align-items: center;
+      padding: 0 14px 0 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .error {
+      margin: 16px 0 0;
+      color: var(--error);
+      font-size: 0.95rem;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--result-bg);
+      border-radius: 12px;
+    }
+
+    .result.is-visible { display: block; }
+
+    .result p {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .result strong {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .hidden,
+    label.field.hidden { display: none; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .case-option:hover span { border-color: var(--accent); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>原価計算</h1>
+
+    <section class="card">
+      <form id="calc-form" novalidate>
+        <p class="section-label">算出対象</p>
+        <div class="case-list">
+          <label class="case-option">
+            <input type="radio" name="calcCase" value="price" checked>
+            <span>
+              <small>CASE 1</small>
+              <b>1人当たりの価格</b>
+            </span>
+          </label>
+          <label class="case-option">
+            <input type="radio" name="calcCase" value="grams">
+            <span>
+              <small>CASE 2</small>
+              <b>1人当たりのグラム数</b>
+            </span>
+          </label>
+        </div>
+
+        <div class="fields">
+          <label class="field">
+            材料の総グラム数
+            <span class="input-wrap">
+              <input id="total-grams" name="totalGrams" type="text" inputmode="decimal" enterkeyhint="next" autocomplete="off" autocorrect="off" spellcheck="false" required>
+              <span class="unit">g</span>
+            </span>
+          </label>
+          <label class="field">
+            材料の価格
+            <span class="input-wrap">
+              <input id="material-price" name="materialPrice" type="text" inputmode="decimal" enterkeyhint="next" autocomplete="off" autocorrect="off" spellcheck="false" required>
+              <span class="unit">円</span>
+            </span>
+          </label>
+          <label class="field" id="label-person-grams">
+            1人分のグラム数
+            <span class="input-wrap">
+              <input id="person-grams" name="personGrams" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" autocorrect="off" spellcheck="false" required>
+              <span class="unit">g</span>
+            </span>
+          </label>
+          <label class="field hidden" id="label-person-price">
+            1人分の価格
+            <span class="input-wrap">
+              <input id="person-price" name="personPrice" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" autocorrect="off" spellcheck="false">
+              <span class="unit">円</span>
+            </span>
+          </label>
+        </div>
+      </form>
+
+      <p class="error hidden" id="error" role="alert"></p>
+
+      <div class="result" id="result" aria-live="polite">
+        <p id="result-label"></p>
+        <strong id="result-value"></strong>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById("calc-form");
+      var errorEl = document.getElementById("error");
+      var resultEl = document.getElementById("result");
+      var resultLabel = document.getElementById("result-label");
+      var resultValue = document.getElementById("result-value");
+
+      var totalGramsInput = document.getElementById("total-grams");
+      var materialPriceInput = document.getElementById("material-price");
+      var personGramsInput = document.getElementById("person-grams");
+      var personPriceInput = document.getElementById("person-price");
+      var labelPersonGrams = document.getElementById("label-person-grams");
+      var labelPersonPrice = document.getElementById("label-person-price");
+
+      function currentCase() {
+        var selected = form.querySelector('input[name="calcCase"]:checked');
+        return selected ? selected.value : "price";
+      }
+
+      function visibleFields() {
+        var fields = [totalGramsInput, materialPriceInput];
+        if (currentCase() === "price") {
+          fields.push(personGramsInput);
+        } else {
+          fields.push(personPriceInput);
+        }
+        return fields;
+      }
+
+      function toNumber(value) {
+        if (value === "" || value === null) return NaN;
+        return Number(String(value).replace(/,/g, "").replace(/．/g, "."));
+      }
+
+      function formatNumber(value) {
+        if (!isFinite(value)) return "-";
+        return value.toLocaleString("ja-JP", {
+          maximumFractionDigits: 4,
+          minimumFractionDigits: 0
+        });
+      }
+
+      function hideResult() {
+        resultEl.classList.remove("is-visible");
+        resultLabel.textContent = "";
+        resultValue.textContent = "";
+      }
+
+      function showError(message) {
+        errorEl.textContent = message;
+        errorEl.classList.remove("hidden");
+        hideResult();
+      }
+
+      function clearError() {
+        errorEl.textContent = "";
+        errorEl.classList.add("hidden");
+      }
+
+      function readAmount(input) {
+        var raw = String(input.value).trim();
+        if (raw === "") return { empty: true };
+        var value = toNumber(raw);
+        if (!isFinite(value) || value <= 0) return { invalid: true };
+        return { value: value };
+      }
+
+      function updateResult() {
+        var totalGrams = readAmount(totalGramsInput);
+        var materialPrice = readAmount(materialPriceInput);
+        var third = currentCase() === "price"
+          ? readAmount(personGramsInput)
+          : readAmount(personPriceInput);
+
+        if (totalGrams.empty || materialPrice.empty || third.empty) {
+          clearError();
+          hideResult();
+          return;
+        }
+
+        if (totalGrams.invalid || materialPrice.invalid || third.invalid) {
+          showError("0より大きい数値を入力してください。");
+          return;
+        }
+
+        var result;
+        if (currentCase() === "price") {
+          result = (materialPrice.value * third.value) / totalGrams.value;
+          resultLabel.textContent = "1人分の価格";
+          resultValue.textContent = formatNumber(result) + " 円";
+        } else {
+          result = (totalGrams.value * third.value) / materialPrice.value;
+          resultLabel.textContent = "1人分のグラム数";
+          resultValue.textContent = formatNumber(result) + " g";
+        }
+
+        clearError();
+        resultEl.classList.add("is-visible");
+      }
+
+      function updateFields() {
+        if (currentCase() === "price") {
+          labelPersonGrams.classList.remove("hidden");
+          labelPersonPrice.classList.add("hidden");
+          personGramsInput.required = true;
+          personPriceInput.required = false;
+        } else {
+          labelPersonGrams.classList.add("hidden");
+          labelPersonPrice.classList.remove("hidden");
+          personGramsInput.required = false;
+          personPriceInput.required = true;
+        }
+        updateResult();
+      }
+
+      form.querySelectorAll('input[name="calcCase"]').forEach(function (radio) {
+        radio.addEventListener("change", updateFields);
+      });
+
+      [totalGramsInput, materialPriceInput, personGramsInput, personPriceInput].forEach(function (input) {
+        input.addEventListener("input", updateResult);
+
+        input.addEventListener("keydown", function (event) {
+          if (event.key !== "Enter") return;
+          event.preventDefault();
+          var fields = visibleFields();
+          var index = fields.indexOf(input);
+          if (index >= 0 && index < fields.length - 1) {
+            fields[index + 1].focus();
+            return;
+          }
+          input.blur();
+        });
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+    })();
+  </script>
+</body>
+</html>
